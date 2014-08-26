@@ -16,11 +16,10 @@
 </head>
 <body ng-app="ngRouteExample">
     <div ng-controller="MainController">
-    <a href="Book/Home">Home</a> |
-    <a href="Book/RentCars" ng-if="userName() != ''">Rent cars</a> |
-    <a href="Book/AddCars" ng-if="userName() != '' && role() == 'admin'">Register cars</a> |
-    <a href="Book/Register">Register user</a> |
-    <a href="Book/Login" ng-if="userName() == ''">Login</a>
+    <a href="RentCarApp/RentCars">Rent cars</a> |
+    <span ng-if="userName() != '' && role() == 'admin'"><a href="RentCarApp/RegCars">Register cars</a> | </span>
+    <a href="RentCarApp/Register">Register user</a> |
+    <a href="RentCarApp/Login" ng-if="userName() == ''">Login</a>
     <a href="" ng-if="userName() != '' && role() != 'admin'" ng-click="logoff()">Logoff ({{userName()}})</a>
     <a href="" ng-if="userName() != '' && role() == 'admin'" ng-click="logoff()">Admin logoff ({{userName()}})</a>
 
