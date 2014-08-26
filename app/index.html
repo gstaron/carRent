@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rent car application</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular-route.js"></script>
+  <script src="js/controllers.js"></script>
+  
+
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
+</head>
+<body ng-app="ngRouteExample">
+    <div ng-controller="MainController">
+    <a href="Book/Home">Home</a> |
+    <a href="Book/RentCars" ng-if="userName() != ''">Rent cars</a> |
+    <a href="Book/AddCars" ng-if="userName() != '' && role() == 'admin'">Register cars</a> |
+    <a href="Book/Register">Register user</a> |
+    <a href="Book/Login" ng-if="userName() == ''">Login</a>
+    <a href="" ng-if="userName() != '' && role() != 'admin'" ng-click="logoff()">Logoff ({{userName()}})</a>
+    <a href="" ng-if="userName() != '' && role() == 'admin'" ng-click="logoff()">Admin logoff ({{userName()}})</a>
+
+    <div ng-view></div>
+
+    <hr />
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<body ng-app="RegForm">
+    <div ng-controller="RegisterCtrl">
+    <form name="form" class="css-form" novalidate>
+      User name:
+        <input type="text" ng-model="user.name" name="uName" required/><br />
+      Password:
+        <input type="password" ng-model="user.password" name="pass" required/><br />
+        <button ng-click="login(user)" ng-disabled="form.$invalid">Login</button><br />
+        <span ng-show="loginRes == ''">Login or password incorrect.</span>
+    </form>
+  </div>
+</body>

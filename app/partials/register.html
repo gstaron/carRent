@@ -1,0 +1,28 @@
+<body ng-app="RegForm">
+    <div ng-controller="RegisterCtrl">
+    <form name="form" class="css-form" novalidate>
+      User name:
+        <input type="text" ng-model="user.name" name="uName" required /><br />
+      E-mail:
+        <input type="email" ng-model="user.email" name="uEmail" required/><br />
+      <div ng-show="form.uEmail.$dirty && form.uEmail.$invalid">Invalid:
+        <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
+        <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+      </div>
+      Password:
+        <input type="password" ng-model="user.password" name="pass" required/><br />
+      Confirm password:
+        <input type="password" ng-model="user.pass2" name="pass2" required/><br />
+        <span ng-show="user.password!=user.pass2">Passwords must match.</span><br>
+      Role: <input type="radio" checked ng-model="user.role" value="customer" required />Customer
+      <input type="radio" ng-model="user.role" value="admin" />Administrator<br />
+
+      <input type="checkbox" ng-if="user.role=='customer'" ng-model="user.agree" name="userAgree" required />
+      <div ng-if="user.role=='customer'">I agree to license terms.</div> <br />
+      <div ng-if="user.role=='customer'" ng-show="!user.agree">Please agree.</div>
+
+      <button ng-click="update(user)"
+              ng-disabled="user.password!=user.pass2 || form.$invalid || isUnchanged(user)">Register</button>
+    </form>
+  </div>
+</body>

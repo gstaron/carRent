@@ -1,0 +1,16 @@
+
+    <div ng-controller="AddCarsCtrl">
+    <form name="form" class="css-form" novalidate>
+      Car name:
+        <input type="text" ng-model="car.name" name="uName" required /><br />
+      Type:
+        <input type="text" ng-model="car.type" name="uType" required/><br />
+      Description:
+        <input type="text" ng-model="car.desc" name="desc" size="155" required/><br /> <br />
+        
+        
+
+      <button ng-click="regCar(car)"
+              ng-disabled="form.$invalid">Register car</button>
+    </form>
+  </div>
