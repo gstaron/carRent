@@ -152,22 +152,19 @@
 
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/Book/Home', {
-      templateUrl: 'partials/home.html'
-    })
-    .when('/Book/Register', {
+    .when('/RentCarApp/Register', {
       templateUrl: 'partials/register.html'
     })
-    .when('/Book/RentCars', {
-      templateUrl: 'partials/rentCars.html'
+    .when('/RentCarApp/RentCars', {
+      templateUrl: 'partials/rent-cars.html'
     })
-    .when('/Book/AddCars', {
-      templateUrl: 'partials/addCars.html'
+    .when('/RentCarApp/RegCars', {
+      templateUrl: 'partials/register-cars.html'
     })
-    .when('/Book/Login', {
+    .when('/RentCarApp/Login', {
       templateUrl: 'partials/login.html'
     })
-    .when('/Book/Logoff', {
+    .when('/RentCarApp/Logoff', {
       templateUrl: 'partials/logoff.html'
     })
 ;
