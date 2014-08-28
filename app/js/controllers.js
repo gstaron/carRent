@@ -1,4 +1,4 @@
-  angular.module('ngRouteExample', ['ngRoute'])
+  angular.module('RentApp', ['ngRoute', 'ngUpload'])
   
   .service('sharedProperties', function() {
     var userName = '';
@@ -40,7 +40,7 @@
         }
     }
 })
-.controller('AddCarsCtrl', function($scope, $filter, sharedProperties) {
+.controller('RegCarsCtrl', function($scope, $filter, sharedProperties) {
       $scope.regCar = function(car) {
         var newCar = angular.copy(car); 
         newCar.imageUrl = 'img/cars/noPhoto.jpg';
@@ -57,6 +57,8 @@
         $scope.regCars = sharedProperties.getRegCars();
         $scope.regCars.push(angular.copy(newCar));
         sharedProperties.setRegCars($scope.regCars);
+        
+        $scope.result = 'New car ' + car.name + ' registered.';
     };
 })
 
@@ -171,7 +173,7 @@
     })
     .when('/RentCarApp/RegCars', {
       templateUrl: 'partials/register-cars.html',
-      controller: 'AddCarsCtrl'
+      controller: 'RegCarsCtrl'
     })
     .when('/RentCarApp/Login', {
       templateUrl: 'partials/login.html',
@@ -186,4 +188,3 @@
     // configure html5 to get links working on jsfiddle
     $locationProvider.html5Mode(true);
   });
-
