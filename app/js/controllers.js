@@ -93,15 +93,17 @@
       sharedProperties.setRents(rents);
      };
      
-     $scope.returnCar = function(carID) {   
+     $scope.returnCar = function(carID, duration) {   
       for (var i=0; i<sharedProperties.getRents().length; i++)
-        if (sharedProperties.getRents()[i].id == carID && sharedProperties.getRents()[i].user == sharedProperties.getUserName()) {
+        if (sharedProperties.getRents()[i].id == carID 
+             && sharedProperties.getRents()[i].user == sharedProperties.getUserName()
+              && sharedProperties.getRents()[i].duration == duration) {
           sharedProperties.getRents()[i].rented = false;
         }
      };
      
-     $scope.carRented = function(carID) {
-      var rentRes = $filter('filter')(sharedProperties.getRents(), {id: carID, user: sharedProperties.getUserName()}, true);
+     $scope.carRented = function(carID, duration) {
+      var rentRes = $filter('filter')(sharedProperties.getRents(), {id: carID, user: sharedProperties.getUserName(), duration: duration}, true);
       var rented = false;
       
       for (var i=0; i<rentRes.length; i++)
@@ -149,23 +151,35 @@
     };
   }])
   
+  .controller('CarDetailCtrl', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http.get('data/cars/' + $routeParams.carId + '.json').success(function(data) {
+      $scope.car = data;
+    });
+  }])
+  
 
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/RentCarApp/Register', {
-      templateUrl: 'partials/register.html'
+      templateUrl: 'partials/register.html',
+      controller: 'RegisterCtrl'
     })
     .when('/RentCarApp/RentCars', {
-      templateUrl: 'partials/rent-cars.html'
+      templateUrl: 'partials/rent-cars.html',
+      controller: 'CarListCtrl'
     })
     .when('/RentCarApp/RegCars', {
-      templateUrl: 'partials/register-cars.html'
+      templateUrl: 'partials/register-cars.html',
+      controller: 'AddCarsCtrl'
     })
     .when('/RentCarApp/Login', {
-      templateUrl: 'partials/login.html'
+      templateUrl: 'partials/login.html',
+      controller: 'RegisterCtrl'
     })
-    .when('/RentCarApp/Logoff', {
-      templateUrl: 'partials/logoff.html'
+    .when('/RentCarApp/cars/:carId', {
+      templateUrl: 'partials/car-detail.html',
+        controller: 'CarDetailCtrl'
     })
 ;
 

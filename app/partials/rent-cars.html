@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="CarListCtrl">
+<div class="container-fluid">
     <div class="row" ng-if="userName() != ''">
       <div class="col-md-2">
         <!--Sidebar content-->
@@ -15,8 +15,8 @@
                                  
         <ul class="phones">
           <li ng-repeat="car in cars | filter:query  | orderBy:orderProp" class="thumbnail">
-            <a href="#/cars/{{car.id}}" class="thumb"><img ng-src="{{car.imageUrl}}"></a>
-            <a href="#/cars/{{car.id}}">{{car.name}} ({{car.type}})</a>
+            <a href="#/RentCarApp/cars/{{car.id}}" class="thumb"><img ng-src="{{car.imageUrl}}"></a>
+            <a href="#/RentCarApp/cars/{{car.id}}">{{car.name}} ({{car.type}})</a>
             <p>{{car.desc}}</p>
             Rent for: 
             <select ng-model="duration">
@@ -24,9 +24,8 @@
               <option value="week">Week</option>
               <option value="month">Month</option>
             </select>
-            <button ng-click="rentCar(car.id,duration)" ng-if="!carRented(car.id)">Rent</button>
-            <button ng-click="returnCar(car.id)" ng-if="carRented(car.id)">Return</button>
-            
+            <button ng-click="rentCar(car.id,duration)" ng-if="!carRented(car.id,duration)">Rent</button>
+            <button ng-click="returnCar(car.id,duration)" ng-if="carRented(car.id,duration)">Return</button>
           </li>
         </ul>
 
