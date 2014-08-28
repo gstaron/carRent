@@ -1,4 +1,4 @@
-  angular.module('RentApp', ['ngRoute', 'ngUpload'])
+  angular.module('RentApp', ['ngRoute'])
   
   .service('sharedProperties', function() {
     var userName = '';
