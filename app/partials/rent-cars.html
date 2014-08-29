@@ -16,7 +16,8 @@
         <ul class="phones">
           <li ng-repeat="car in cars | filter:query  | orderBy:orderProp" class="thumbnail">
             <a href="#/RentCarApp/cars/{{car.id}}" class="thumb"><img ng-src="{{car.imageUrl}}"></a>
-            <a href="#/RentCarApp/cars/{{car.id}}">{{car.name}} ({{car.type}})</a>
+            <a href="#/RentCarApp/cars/{{car.id}}">{{car.name}}</a>
+            <p>({{car.type}})</p>
             <p>{{car.desc}}</p>
             Rent for: 
             <select ng-model="duration">

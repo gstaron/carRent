@@ -7,8 +7,8 @@ rentAppControllers.controller('RegCarsCtrl', function($scope, $filter, sharedPro
         var newCar = angular.copy(car); 
         newCar.imageUrl = 'img/cars/noPhoto.jpg';
         
-        newID = 0;
-        maxID = 999;
+        var newID = 0;
+        var maxID = 999;
         for (newID=0; newID<=maxID; newID++)     {
          var res = $filter('filter')(sharedProperties.getRegCars(), {id: newID}, true);
          if (res.length==0)
