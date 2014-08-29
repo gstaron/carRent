@@ -4,16 +4,25 @@
 
 describe('RentCar App', function() {
 
-  it('should redirect index.html to index.html#/phones', function() {
-    browser.get('app/index.html');
-    browser.getLocationAbsUrl().then(function(url) {
-        expect(url.split('#')[1]).toBe('/phones');
-      });
+  describe('Car list view (CarListCtrl) ', function() {
+
+    beforeEach(function() {                           
+      browser.get('app#/RentCarApp/RentCars');
+    });
+
+    it('should filter the car list as user types into the search box', function() {
+
+      var carList = element.all(by.repeater('car in cars'));
+      var query = element(by.model('query'));
+
+      query.sendKeys('sedan');
+      expect(carList.count()).toBe(3);
+
+      query.clear();
+      query.sendKeys('german');
+      expect(carList.count()).toBe(1);
+    });
   });
   
-  describe('Phone list view', function() {
-    beforeEach(function() {
-      browser.get('app/index.html#/phones');
-    })});
-    
+  
 });

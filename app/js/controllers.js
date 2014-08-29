@@ -1,46 +1,8 @@
-  angular.module('RentApp', ['ngRoute'])
-  
-  .service('sharedProperties', function() {
-    var userName = '';
-    var users = [];
-    var regCars = [];
-    var role = '';
-    var rents = [];
-        
-    return {
-        getUserName: function() {
-            return userName;
-        },
-        setUserName: function(value) {
-            userName = value;
-        },
-        getRole: function() {
-            return role;
-        },
-        setRole: function(value) {
-            role = value;
-        },
-        getUsers: function() {
-            return users;
-        },
-        setUsers: function(value) {
-            users = value;
-        },
-        getRegCars: function() {
-            return regCars;
-        },
-        setRegCars: function(value) {
-            regCars = value;
-        }     ,
-        getRents: function() {
-            return rents;
-        },
-        setRents: function(value) {
-            rents = value;
-        }
-    }
-})
-.controller('RegCarsCtrl', function($scope, $filter, sharedProperties) {
+'use strict';
+
+var rentAppControllers = angular.module('rentAppControllers', []);
+
+rentAppControllers.controller('RegCarsCtrl', function($scope, $filter, sharedProperties) {
       $scope.regCar = function(car) {
         var newCar = angular.copy(car); 
         newCar.imageUrl = 'img/cars/noPhoto.jpg';
@@ -63,6 +25,8 @@
 })
 
    .controller('MainController', function($scope, $route, $routeParams, $location, sharedProperties) {
+       sharedProperties.setUserName('test');
+       sharedProperties.setRole('admin');
        $scope.$route = $route;
        $scope.$location = $location;
        $scope.$routeParams = $routeParams;
@@ -158,33 +122,4 @@
     $http.get('data/cars/' + $routeParams.carId + '.json').success(function(data) {
       $scope.car = data;
     });
-  }])
-  
-
-  .config(function($routeProvider, $locationProvider) {
-    $routeProvider
-    .when('/RentCarApp/Register', {
-      templateUrl: 'partials/register.html',
-      controller: 'RegisterCtrl'
-    })
-    .when('/RentCarApp/RentCars', {
-      templateUrl: 'partials/rent-cars.html',
-      controller: 'CarListCtrl'
-    })
-    .when('/RentCarApp/RegCars', {
-      templateUrl: 'partials/register-cars.html',
-      controller: 'RegCarsCtrl'
-    })
-    .when('/RentCarApp/Login', {
-      templateUrl: 'partials/login.html',
-      controller: 'RegisterCtrl'
-    })
-    .when('/RentCarApp/cars/:carId', {
-      templateUrl: 'partials/car-detail.html',
-        controller: 'CarDetailCtrl'
-    })
-;
-
-    // configure html5 to get links working on jsfiddle
-    $locationProvider.html5Mode(true);
-  });
+  }]);
