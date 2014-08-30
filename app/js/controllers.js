@@ -25,7 +25,7 @@ rentAppControllers.controller('RegCarsCtrl', function($scope, $filter, sharedPro
 })
 
    .controller('MainController', function($scope, $route, $routeParams, $location, sharedProperties) {
-       sharedProperties.setUserName('test');
+       sharedProperties.setUserName('Initial Test');
        sharedProperties.setRole('admin');
        $scope.$route = $route;
        $scope.$location = $location;
@@ -90,7 +90,7 @@ rentAppControllers.controller('RegCarsCtrl', function($scope, $filter, sharedPro
     $scope.users = sharedProperties.getUsers();
     $scope.userName = sharedProperties.getUserName;
 
-    $scope.update = function(user) {
+    $scope.register = function(user) {
       $scope.users = sharedProperties.getUsers();
       $scope.users.push(angular.copy(user));
       sharedProperties.setUsers($scope.users);

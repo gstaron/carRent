@@ -19,6 +19,6 @@
       <div ng-if="user.role=='customer'">I agree to license terms.</div> <br />
       <div ng-if="user.role=='customer'" ng-show="!user.agree">Please agree.</div>
 
-      <button ng-click="update(user)"
+      <button ng-click="register(user)"
               ng-disabled="user.password!=user.pass2 || form.$invalid || isUnchanged(user)">Register</button>
     </form>

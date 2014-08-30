@@ -6,6 +6,7 @@ describe('Main menu routeProvider (ngRoute) ', function() {
     
     it('should go to all navigation pages', function() {
       var toBes = ["/RentCarApp/RentCars", "/RentCarApp/RegCars", "/RentCarApp/Register"];
+      
       var list = element.all(by.css('a'));
       
         list.first().click();

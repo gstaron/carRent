@@ -46,7 +46,7 @@
       ]);
     });
     
-   it('should be possible to control car order via the drop down select box', function() {
+   it('should be possible to rent car and then return the right car with duration', function() {
     var btn = element(by.css('button'));
     btn.click();
     expect(btn.getText()).toBe('Return');
